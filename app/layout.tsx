@@ -1,6 +1,9 @@
-export const metadata = {
-  title: "QueryStaff",
-  description: "The first international AI employee recruitment platform.",
+import "./globals.css";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "QueryStaff — AI Employee Recruitment",
+  description: "The first international AI employee recruitment platform."
 };
 
 export default function RootLayout({
@@ -10,16 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body
-        style={{
-          margin: 0,
-          background: "#0b1020",
-          color: "#ffffff",
-          fontFamily: "Arial, sans-serif",
-        }}
-      >
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
