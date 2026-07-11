@@ -142,7 +142,7 @@ h1 { font-size: clamp(44px, 6vw, 82px); line-height: 0.98; letter-spacing: -0.05
 .candidate-icon { font-size: 42px; width: 54px; height: 54px; display: grid; place-items: center; border-radius: 16px; background: linear-gradient(135deg, #eef7ff, #f4edff); }
 .candidate-pricewrap { display: flex; flex-direction: column; align-items: flex-end; }
 .candidate-highlight { display: inline-block; font-size: 11px; font-weight: 800; color: #6b55ff; text-transform: uppercase; letter-spacing: 0.16em; }
-.candidate-price { font-size: 15px; font-weight: 800; color: #07111f; }
+.candidate-price { margin-left: 12px; white-space: nowrap; flex-shrink: 0;font-size: 15px; font-weight: 800; color: #07111f; }
 .candidate-role { font-weight: 700; color: #14213d; margin: 0; }
 .candidate-specialty { margin: 0; color: #5b6b80; font-size: 14px; line-height: 1.6; }
 .candidate-meta-row { margin-top: 2px; }

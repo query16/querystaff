@@ -5,7 +5,7 @@ const candidates = [
     icon: "👨‍🍳",
     specialty: "Accueil, réservations & expérience client",
     availability: "Disponible maintenant",
-    price: "39 €/mois",
+    price: "Dès 39 €/mois",
     highlight: "Accueil & réservations",
     skills: ["Réservations", "Menu & allergènes", "WhatsApp", "Avis clients"],
     integrations: ["Resy", "Google Calendar", "WhatsApp", "Google Sheets"]
@@ -16,7 +16,7 @@ const candidates = [
     icon: "👩‍💼",
     specialty: "Relation client & accompagnement commercial",
     availability: "Prête en 24 h",
-    price: "39 €/mois",
+    price: "Dès 39 €/mois",
     highlight: "Relation client",
     skills: ["Accueil client", "Questions fréquentes", "Relance prospects", "Instagram"],
     integrations: ["Instagram", "Mailchimp", "Calendly", "Notion"]
@@ -27,7 +27,8 @@ const candidates = [
     icon: "👨‍🔧",
     specialty: "Organisation des rendez-vous & suivi atelier",
     availability: "Disponible immédiatement",
-    price: "39 €/mois",
+    price: "Dès 39 €/mois",
+
     highlight: "Rendez-vous & suivi",
     skills: ["Rendez-vous", "Devis", "Suivi réparation", "SMS"],
     integrations: ["Google Calendar", "Twilio", "Trello", "Drive"]
@@ -38,7 +39,7 @@ const candidates = [
     icon: "👩‍⚕️",
     specialty: "Gestion des appels & rappels patients",
     availability: "Déploiement rapide",
-    price: "39 €/mois",
+    price: "Dès 39 €/mois",
     highlight: "Organisation & rappel",
     skills: ["Rendez-vous", "Rappels", "Orientation", "E-mail"],
     integrations: ["Outlook", "Google Workspace", "Mail", "Trello"]
@@ -301,8 +302,8 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="candidate-actions">
-                  <a className="btn secondary btn-small" href="#">Voir le profil</a>
-                  <a className="btn primary btn-small" href="#">Essayer gratuitement</a>
+                  <a className="btn secondary btn-small" href="#">Découvrir {candidate.name}</a>
+                  <a className="btn primary btn-small" href="#">Ajouter à mon équipe</a>
                 </div>
               </article>
             ))}
@@ -482,7 +483,9 @@ export default function Home() {
                 <li>Personnalisation métier</li>
               </ul>
               <div className="pc-actions">
-                <a className="btn secondary" href="#">Essayer gratuitement</a>
+                <a className="btn secondary" href="#">Ajouter à mon équipe
+
+                </a>
                 <a className="btn primary" href="#">Demander une démo</a>
               </div>
             </div>
