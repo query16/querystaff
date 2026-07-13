@@ -25,7 +25,7 @@ const agents = {
 };
 
 export async function GET(request: Request) {
-      const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+      const stripe = new Stripe(stripeSecretKey, {httpClient: Stripe.createFetchHttpClient(),});
 
   if (!stripeSecretKey) {
     return Response.json(
