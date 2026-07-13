@@ -82,6 +82,22 @@ export default function EmmaPage() {
             }}
           >
             <strong style={{ fontSize: "22px" }}>Dès 39 €/mois</strong>
+
+<a
+  href="/api/checkout?agent=emma"
+  style={{
+    display: "inline-block",
+    marginTop: "18px",
+    padding: "14px 24px",
+    borderRadius: "999px",
+    background: "linear-gradient(90deg, #18d7ff, #7b61ff)",
+    color: "white",
+    fontWeight: 800,
+    textDecoration: "none",
+  }}
+>
+  Choisir Emma
+</a>
           </div>
         </div>
       </section>

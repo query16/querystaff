@@ -84,6 +84,22 @@ export default function AgassiPage() {
             }}
           >
             <strong style={{ fontSize: "22px" }}>Dès 59 €/mois</strong>
+
+<a
+  href="/api/checkout?agent=agassi"
+  style={{
+    display: "inline-block",
+    marginTop: "18px",
+    padding: "14px 24px",
+    borderRadius: "999px",
+    background: "linear-gradient(90deg, #18d7ff, #7b61ff)",
+    color: "white",
+    fontWeight: 800,
+    textDecoration: "none",
+  }}
+>
+  Choisir Agassi
+</a>
           </div>
         </div>
       </section>

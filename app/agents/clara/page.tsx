@@ -83,6 +83,22 @@ export default function ClaraPage() {
             }}
           >
             <strong style={{ fontSize: "22px" }}>Dès 39 €/mois</strong>
+
+<a
+  href="/api/checkout?agent=clara"
+  style={{
+    display: "inline-block",
+    marginTop: "18px",
+    padding: "14px 24px",
+    borderRadius: "999px",
+    background: "linear-gradient(90deg, #18d7ff, #7b61ff)",
+    color: "white",
+    fontWeight: 800,
+    textDecoration: "none",
+  }}
+>
+  Choisir Clara
+</a>
           </div>
         </div>
       </section>
