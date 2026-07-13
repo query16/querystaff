@@ -7,7 +7,7 @@
 
  "use client";
 
-import { FormEvent } from "react";
+import { FormEvent , Suspense } from"react";
 import { useSearchParams } from "next/navigation";
 const agents = {
   gordon: {
@@ -32,7 +32,7 @@ const agents = {
   },
 };
 
-export default function CommanderPage() {
+function CommandeContent(){
   const searchParams = useSearchParams();
   const agentKey = searchParams.get("agent") || "gordon";
   const agent = agents[agentKey as keyof typeof agents] || agents.gordon;
@@ -172,3 +172,11 @@ const inputStyle = {
   color: "white",
   fontSize: "16px",
 };                            
+
+export default function CommandePage() {
+  return (
+    <Suspense fallback={<div>Chargement...</div>}>
+      <CommandeContent />
+    </Suspense>
+  );
+}

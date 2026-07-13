@@ -1,6 +1,5 @@
  import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 const agents = {
   gordon: {
@@ -26,6 +25,16 @@ const agents = {
 };
 
 export async function GET(request: Request) {
+      const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+
+  if (!stripeSecretKey) {
+    return Response.json(
+      { error: "Clé Stripe manquante." },
+      { status: 500 }
+    );
+  }
+
+  const stripe = new Stripe(stripeSecretKey);
   const url = new URL(request.url);
   const agentKey = url.searchParams.get("agent") || "gordon";
 
