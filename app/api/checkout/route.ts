@@ -22,6 +22,36 @@ const agents = {
     role: "Formalités d’entreprise",
     amount: 5900,
   },
+  sofia: {
+  name: "Sofia",
+  role: "Santé",
+  amount: 3900,
+},
+lina: {
+  name: "Lina",
+  role: "Réseaux sociaux",
+  amount: 4900,
+},
+noah: {
+  name: "Noah",
+  role: "Immobilier",
+  amount: 4900,
+},
+maya: {
+  name: "Maya",
+  role: "E-commerce",
+  amount: 4900,
+},
+leo: {
+  name: "Léo",
+  role: "Garage",
+  amount: 3900,
+},
+clara: {
+  name: "Clara",
+  role: "Administration",
+  amount: 4900,
+},
 };
 
 export async function GET(request: Request) {
