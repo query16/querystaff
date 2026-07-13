@@ -34,7 +34,7 @@ export async function GET(request: Request) {
     );
   }
 
-  const stripe = new Stripe(stripeSecretKey);
+ 
   const url = new URL(request.url);
   const agentKey = url.searchParams.get("agent") || "gordon";
 
