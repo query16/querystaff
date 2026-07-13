@@ -25,7 +25,7 @@ const agents = {
 };
 
 export async function GET(request: Request) {
-      const stripe = new Stripe(stripeSecretKey, {httpClient: Stripe.createFetchHttpClient(),});
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
   if (!stripeSecretKey) {
     return Response.json(
@@ -34,6 +34,9 @@ export async function GET(request: Request) {
     );
   }
 
+  const stripe = new Stripe(stripeSecretKey, {
+    httpClient: Stripe.createFetchHttpClient(),
+  });
  
   const url = new URL(request.url);
   const agentKey = url.searchParams.get("agent") || "gordon";
