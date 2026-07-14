@@ -4,12 +4,12 @@ import { useState } from "react";
 import { createClient } from "../../lib/supabase/client";
 
 export default function ConnexionPage() {
-  const supabase = createClient();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function envoyerLien() {
+    const supabase = createClient();
     setLoading(true);
     setMessage("");
 
