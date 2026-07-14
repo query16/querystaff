@@ -21,6 +21,30 @@ export default function RootLayout({
         <body>
         <MainMenu />
         {children}
+
+        <footer
+          style={{
+            width: "100%",
+            padding: "24px",
+            textAlign: "center",
+            borderTop: "1px solid rgba(255,255,255,0.12)",
+            background: "#030712",
+            color: "#cbd5e1",
+            fontSize: "14px",
+          }}
+        >
+          <span>© 2026 QueryStaff — </span>
+          <a
+            href="/politique-confidentialite"
+            style={{
+              color: "#67e8f9",
+              fontWeight: 700,
+              textDecoration: "none",
+            }}
+          >
+            Politique de confidentialité & RGPD
+          </a>
+        </footer>
       </body>
     </html>
   );
