@@ -310,8 +310,8 @@ body {
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
   }
 
-  .mobile-menu[style*="display: flex"] {
-    display: flex !important;
+  .mobile-menu {
+    display: grid !important;
   }
 
   header {
