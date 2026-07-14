@@ -44,6 +44,19 @@ export default function RootLayout({
           >
             Politique de confidentialité & RGPD
           </a>
+
+          <span style={{ opacity: 0.5 }}>•</span>
+
+          <a
+            href="/mentions-legales"
+            style={{
+              color: "#67e8f9",
+              fontWeight: 700,
+              textDecoration: "none",
+            }}
+          >
+            Mentions légales
+          </a>
         </footer>
       </body>
     </html>
