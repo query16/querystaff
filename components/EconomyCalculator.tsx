@@ -13,6 +13,7 @@ export default function EconomyCalculator() {
 
   return (
     <div
+      className="economy-calculator-card"
       style={{
         marginTop: "70px",
         padding: "36px",
