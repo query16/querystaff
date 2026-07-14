@@ -49,8 +49,7 @@ export default function MainMenu() {
           Query<span style={{ color: "#6ee7f9" }}>Staff</span>
         </a>
 
-        <nav
-          className="desktop-menu"
+        <nav className="desktop-nav desktop-menu"
           style={{
             display: "flex",
             alignItems: "center",
