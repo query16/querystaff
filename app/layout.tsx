@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import MainMenu from "../components/MainMenu";
 export const metadata: Metadata = {
   title: "QueryStaff — AI Employee Recruitment",
@@ -58,6 +59,7 @@ export default function RootLayout({
             Mentions légales
           </a>
         </footer>
+      <GoogleAnalytics gaId="G-8TFXNJZ0BW" />
       </body>
     </html>
   );
