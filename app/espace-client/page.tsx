@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+import { createClient } from "../../lib/supabase/server";
 import Link from "next/link";
 
 const rubriques = [
@@ -27,7 +29,15 @@ const rubriques = [
   },
 ];
 
-export default function EspaceClientPage() {
+export default async function EspaceClientPage() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/connexion");
+  }
   return (
     <main
       style={{
