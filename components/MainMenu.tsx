@@ -10,6 +10,7 @@ const links = [
   { label: "Tarifs", href: "/#tarifs" },
   { label: "Démonstration", href: "/#demonstration" },
   { label: "Contact", href: "/#contact" },
+  { label: "Espace client", href: "/connexion" },
 ];
 
 export default function MainMenu() {
