@@ -30,7 +30,7 @@
             background: "rgba(255,255,255,0.07)",
           }}
         >
-          <div style={{ fontSize: "64px" }}>🍽️</div>
+          <div style={{ fontSize: "64px" }}>🔧</div>
 
           <h1
             style={{
@@ -49,7 +49,7 @@
               fontWeight: 800,
             }}
           >
-            Collaborateur IA pour la restauration
+            Collaborateur IA pour les garages
           </p>
 
           <p
@@ -66,12 +66,12 @@
           <h2>Ses principales missions</h2>
 
           <ul style={{ color: "#c3cede", lineHeight: 2 }}>
-            <li>Présenter la carte et les menus</li>
-            <li>Répondre aux questions sur les plats</li>
-            <li>Prendre les demandes de réservation</li>
-            <li>Informer sur les horaires et services</li>
-            <li>Transmettre les commandes et demandes importantes</li>
-          </ul>
+  <li>Répondre aux demandes des automobilistes</li>
+  <li>Planifier les rendez-vous à l’atelier</li>
+  <li>Recueillir les informations du véhicule</li>
+  <li>Préparer les demandes de devis</li>
+  <li>Informer les clients sur le suivi des réparations</li>
+</ul>
 
           <div
             style={{
