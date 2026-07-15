@@ -3,8 +3,9 @@ import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import MainMenu from "../components/MainMenu";
 export const metadata: Metadata = {
-  title: "QueryStaff — AI Employee Recruitment",
-  description: "The first international AI employee recruitment platform."
+  title: "QueryStaff — Vos collaborateurs IA spécialisés",
+  description:
+    "Des collaborateurs IA spécialisés pour accompagner les entreprises dans l’administratif, le commerce, la communication et la relation client.",
 };
 
 export default function RootLayout({
