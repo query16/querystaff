@@ -70,6 +70,14 @@ const agents = [
     mission: "Classement, facturation, rappels et organisation quotidienne",
     price: "Dès 49 €/mois",
   },
+  {
+    name: "Milo",
+    icon: "🎙️",
+    role: "Relations presse & musique",
+    mission: "Communiqués de presse, campagnes médias, relances et promotion musicale",
+    price: "Dès 39 €/mois",
+  },
+
 ];
 
 export default function AgentsPage() {
