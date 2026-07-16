@@ -38,7 +38,16 @@ export default async function EspaceClientPage() {
   if (!user) {
     redirect("/connexion");
   }
-  return (
+  
+  const { data: configuration } = await supabase
+    .from("collaborator_configurations")
+    .select("company, sector, agent, goals, tone, missions, created_at")
+    .eq("user_id", user.id)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+return (
     <main
       style={{
         minHeight: "100vh",
@@ -86,6 +95,52 @@ export default async function EspaceClientPage() {
           Retrouvez ici vos collaborateurs IA, vos commandes, votre abonnement,
           vos documents et l’historique de vos échanges.
         </p>
+
+
+      {configuration && (
+        <div
+          style={{
+            marginTop: "32px",
+            padding: "28px",
+            borderRadius: "22px",
+            border: "1px solid rgba(103,232,249,0.35)",
+            background: "rgba(255,255,255,0.07)",
+            backdropFilter: "blur(12px)",
+          }}
+        >
+          <p
+            style={{
+              margin: 0,
+              color: "#67e8f9",
+              fontWeight: 800,
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+            }}
+          >
+            Votre collaborateur configuré
+          </p>
+
+          <h2 style={{ margin: "12px 0", fontSize: "30px" }}>
+            {configuration.agent}
+          </h2>
+
+          <p style={{ margin: "6px 0", color: "#cbd5e1" }}>
+            <strong>Entreprise :</strong> {configuration.company}
+          </p>
+
+          <p style={{ margin: "6px 0", color: "#cbd5e1" }}>
+            <strong>Secteur :</strong> {configuration.sector}
+          </p>
+
+          <p style={{ margin: "16px 0 6px", color: "#cbd5e1" }}>
+            <strong>Objectifs :</strong>
+          </p>
+
+          <p style={{ margin: 0, lineHeight: 1.6 }}>
+            {configuration.goals}
+          </p>
+        </div>
+      )}
 
         <div
           style={{
