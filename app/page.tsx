@@ -21,6 +21,8 @@ export default function HomePage() {
           textAlign: "center",
         }}
       >
+
+
         <p
           style={{
             color: "#6ee7f9",
@@ -118,6 +120,114 @@ export default function HomePage() {
           </a>
         </div>
  <div style={{ marginTop: "70px" }}>
+      <div style={{ marginTop: "70px", marginBottom: "70px" }}>
+        <p
+          style={{
+            color: "#6ee7f9",
+            fontWeight: 800,
+            letterSpacing: "1px",
+            textTransform: "uppercase",
+          }}
+        >
+          Une équipe adaptée à votre activité
+        </p>
+
+        <h2 style={{ fontSize: "38px", marginBottom: "14px" }}>
+          Découvrez trois de nos collaborateurs IA
+        </h2>
+
+        <p
+          style={{
+            maxWidth: "720px",
+            margin: "0 auto 32px",
+            color: "#c3cede",
+            fontSize: "18px",
+            lineHeight: 1.7,
+          }}
+        >
+          Chaque collaborateur possède sa spécialité et ses propres missions.
+        </p>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))",
+            gap: "20px",
+            textAlign: "left",
+          }}
+        >
+          {[
+            {
+              name: "Gordon",
+              icon: "👨‍🍳",
+              role: "Restaurant",
+              mission: "Réservations, menus, allergènes et demandes clients",
+              link: "/agents/gordon",
+            },
+            {
+              name: "Lina",
+              icon: "📱",
+              role: "Réseaux sociaux",
+              mission: "Publications, calendrier éditorial et réponses",
+              link: "/agents/lina",
+            },
+            {
+              name: "Milo",
+              icon: "🎙️",
+              role: "Relations presse & musique",
+              mission: "Communiqués, campagnes médias et promotion musicale",
+              link: "/agents/milo",
+            },
+          ].map((agent) => (
+            <a
+              key={agent.name}
+              href={agent.link}
+              style={{
+                display: "block",
+                padding: "26px",
+                borderRadius: "24px",
+                border: "1px solid rgba(255,255,255,0.14)",
+                background: "rgba(255,255,255,0.07)",
+                color: "white",
+                textDecoration: "none",
+              }}
+            >
+              <div style={{ fontSize: "38px", marginBottom: "14px" }}>
+                {agent.icon}
+              </div>
+              <h3 style={{ fontSize: "27px", margin: "0 0 6px" }}>
+                {agent.name}
+              </h3>
+              <p style={{ color: "#6ee7f9", fontWeight: 800 }}>
+                {agent.role}
+              </p>
+              <p style={{ color: "#c3cede", lineHeight: 1.6 }}>
+                {agent.mission}
+              </p>
+              <strong style={{ color: "#6ee7f9" }}>
+                Découvrir {agent.name} →
+              </strong>
+            </a>
+          ))}
+        </div>
+
+        <a
+          href="/agents"
+          style={{
+            display: "inline-flex",
+            marginTop: "28px",
+            padding: "14px 24px",
+            borderRadius: "999px",
+            background: "linear-gradient(135deg, #22c7e8, #7257f5)",
+            color: "white",
+            fontWeight: 800,
+            textDecoration: "none",
+          }}
+        >
+          Voir les 11 collaborateurs
+        </a>
+      </div>
+
   <p
     style={{
       color: "#6ee7f9",
