@@ -75,7 +75,7 @@ const agents = [
     icon: "🎙️",
     role: "Relations presse & musique",
     mission: "Communiqués de presse, campagnes médias, relances et promotion musicale",
-    price: "Dès 49 €/mois",
+    price: "Dès 39 €/mois",
   },
 
 ];
