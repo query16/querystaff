@@ -32,7 +32,23 @@ export default function HomePage() {
           QueryStaff
         </p>
 
-        <h1
+              <p
+        style={{
+          display: "inline-block",
+          margin: "0 0 18px",
+          padding: "9px 16px",
+          borderRadius: "999px",
+          background: "rgba(34, 199, 232, 0.12)",
+          border: "1px solid rgba(34, 199, 232, 0.35)",
+          color: "#6ee7f9",
+          fontWeight: 800,
+          fontSize: "14px",
+        }}
+      >
+        11 collaborateurs IA spécialisés — disponibles 24h/24
+      </p>
+
+      <h1
           style={{
             fontSize: "64px",
             lineHeight: 1.05,
