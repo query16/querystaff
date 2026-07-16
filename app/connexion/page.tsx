@@ -16,7 +16,7 @@ export default function ConnexionPage() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: "https://querystaff.com/auth/callback",
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
       },
     });
 

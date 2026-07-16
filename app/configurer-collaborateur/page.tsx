@@ -1,4 +1,49 @@
+"use client";
+
+import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+
 export default function ConfigurerCollaborateurPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    const form = new FormData(event.currentTarget);
+
+    const response = await fetch("/api/configurer-collaborateur", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        company: form.get("company"),
+        sector: form.get("sector"),
+        agent: form.get("agent"),
+        goals: form.get("goals"),
+        tone: form.get("tone"),
+        missions: form.get("missions"),
+      }),
+    });
+
+    const result = await response.json();
+
+    if (response.status === 401) {
+      router.push("/connexion");
+      return;
+    }
+
+    if (!response.ok) {
+      setMessage(result.error || "Impossible d’enregistrer la configuration.");
+      setLoading(false);
+      return;
+    }
+
+    router.push("/espace-client");
+  }
+
   const inputStyle = {
     width: "100%",
     padding: "14px 16px",
@@ -56,6 +101,7 @@ export default function ConfigurerCollaborateurPage() {
         </p>
 
         <form
+          onSubmit={handleSubmit}
           style={{
             display: "grid",
             gap: "22px",
@@ -130,8 +176,15 @@ export default function ConfigurerCollaborateurPage() {
             />
           </div>
 
+          {message && (
+            <p style={{ color: "#fca5a5", fontWeight: 700, margin: 0 }}>
+              {message}
+            </p>
+          )}
+
           <button
             type="submit"
+            disabled={loading}
             style={{
               border: 0,
               padding: "16px 24px",
@@ -143,7 +196,7 @@ export default function ConfigurerCollaborateurPage() {
               cursor: "pointer",
             }}
           >
-            Enregistrer et continuer
+            {loading ? "Enregistrement…" : "Enregistrer et continuer"}
           </button>
         </form>
       </section>
