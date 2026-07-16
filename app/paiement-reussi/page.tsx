@@ -72,7 +72,7 @@
         </div>
 
         <a
-          href="/"
+          href="/configurer-collaborateur"
           style={{
             display: "inline-flex",
             justifyContent: "center",
@@ -85,7 +85,7 @@
             textDecoration: "none",
           }}
         >
-          Retour à l’accueil
+          Configurer mon collaborateur
         </a>
       </section>
     </main>
