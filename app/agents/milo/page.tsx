@@ -30,7 +30,7 @@
             background: "rgba(255,255,255,0.07)",
           }}
         >
-          <div style={{ fontSize: "64px" }}>👨‍🍳</div>
+          <div style={{ fontSize: "64px" }}>🎙️</div>
 
           <h1
             style={{
@@ -64,13 +64,13 @@
 
           <h2>Ses principales missions</h2>
 
-          <ul style={{ color: "#c3cede", lineHeight: 2 }}>
-            <li>Répondre aux demandes de réservation</li>
-            <li>Présenter le menu et les spécialités</li>
-            <li>Informer sur les allergènes</li>
-            <li>Répondre via WhatsApp ou le site</li>
-            <li>Transmettre les demandes importantes à l’équipe</li>
-          </ul>
+        <ul style={{ color: "#c3cede", lineHeight: 2 }}>
+          <li>Rédiger les communiqués et dossiers de presse</li>
+          <li>Préparer les e-mails pour les journalistes, radios et médias</li>
+          <li>Organiser les campagnes de lancement musical</li>
+          <li>Préparer les relances et les demandes d’interview</li>
+          <li>Suivre les retombées presse et les contacts médias</li>
+        </ul>
 
           <div
             style={{

@@ -52,6 +52,12 @@ clara: {
   role: "Administration",
   amount: 4900,
 },
+  milo: {
+    name: "Milo",
+    role: "Relations presse & promotion musicale",
+    amount: 3900,
+  },
+
 };
 
 export async function GET(request: Request) {
