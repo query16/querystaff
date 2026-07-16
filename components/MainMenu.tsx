@@ -71,18 +71,7 @@ export default function MainMenu() {
               {link.label}
             </a>
           ))}
-        <a
-          href="/connexion"
-          onClick={() => setOpen(false)}
-          style={{
-            color: "white",
-            textDecoration: "none",
-            fontWeight: 700,
-            whiteSpace: "nowrap",
-          }}
-        >
-          Espace client
-        </a>
+        
 
 
           <a
