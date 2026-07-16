@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 import MainMenu from "../components/MainMenu";
 export const metadata: Metadata = {
   title: "QueryStaff — Vos collaborateurs IA spécialisés",
@@ -61,6 +62,15 @@ export default function RootLayout({
           </a>
         </footer>
       <GoogleAnalytics gaId="G-8TFXNJZ0BW" />
+      <Script id="microsoft-clarity" strategy="afterInteractive">
+  {`
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xnj7eyney5");
+  `}
+</Script>
       </body>
     </html>
   );
