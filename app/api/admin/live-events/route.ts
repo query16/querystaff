@@ -1,21 +1,32 @@
  import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-if (!supabaseUrl || !supabaseKey) {
-  throw new Error(
-    `Variable manquante : ${
-      !supabaseUrl ? "NEXT_PUBLIC_SUPABASE_URL" : "SUPABASE_SERVICE_ROLE_KEY"
-    }`
-  );
+function getSupabase() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    return null;
+  }
+
+  return createClient(supabaseUrl, supabaseKey);
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-
 export async function GET() {
-const { data, error } = await supabase
+  const supabase = getSupabase();
+
+  if (!supabase) {
+    return NextResponse.json(
+      {
+        error: "Variables Supabase manquantes",
+        supabaseUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
+        supabaseKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+      },
+      { status: 500 }
+    );
+  }
+
+  const { data, error } = await supabase
     .from("live_events")
     .select("*")
     .order("created_at", { ascending: false })
@@ -29,11 +40,18 @@ const { data, error } = await supabase
 }
 
 export async function POST(request: Request) {
+  const supabase = getSupabase();
+
+  if (!supabase) {
+    return NextResponse.json(
+      { error: "Variables Supabase manquantes" },
+      { status: 500 }
+    );
+  }
+
   const body = await request.json();
 
- const { error } = await supabase
-  .from("live_events")
-  .insert({
+  const { error } = await supabase.from("live_events").insert({
     session_id: crypto.randomUUID(),
     event_type: body.type || "Visiteur arrivé",
   });
