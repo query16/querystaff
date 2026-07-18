@@ -1,8 +1,29 @@
+"use client";
+
+import { useEffect } from "react";
 import EconomyCalculator from "../components/EconomyCalculator";
 import LiveDemo from "../components/LiveDemo";
-import ContactForm from "../components/ContactForm";
+import ContactForm from "../components/ContactForm"; 
 export default function HomePage() {
+   useEffect(() => {
+  const alreadyTracked = sessionStorage.getItem("querystaff_visitor_tracked");
+
+  if (!alreadyTracked) {
+    fetch("/api/admin/live-events", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        type: "Visiteur arrivé",
+      }),
+    });
+
+    sessionStorage.setItem("querystaff_visitor_tracked", "true");
+  }
+}, []);
    return (
+
     <main
       style={{
         minHeight: "100vh",

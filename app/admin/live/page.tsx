@@ -19,10 +19,13 @@ useEffect(() => {
   }
 
   loadEvents();
+  const interval = setInterval(loadEvents, 3000);
+
+return () => clearInterval(interval);
 }, []); 
 
   const cards = [
-    { title: "Visiteurs", value: "0", icon: "👥" },
+   { title: "Visiteurs", value: String(events.length), icon: "👥" },
     { title: "Paiements", value: "0", icon: "💳" },
     { title: "CA du jour", value: "0 €", icon: "💰" },
     { title: "Conversations IA", value: "0", icon: "🤖" },
@@ -100,7 +103,7 @@ useEffect(() => {
 ) : (
   events.map((event) => (
     <p key={event.id}>
-      🟢 {event.type || "Nouvelle activité"}
+{event.event_type} — {new Date(event.created_at).toLocaleTimeString("fr-FR")}
     </p>
   ))
 )}
