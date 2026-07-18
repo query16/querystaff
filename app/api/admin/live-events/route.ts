@@ -2,11 +2,13 @@
 
 function getConfig() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.replace(
-    /[\r\n\t\u200B-\u200D\uFEFF]/g,
-    ""
-  );
+ const rawKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? "";
 
+const key =
+  rawKey.match(/sb_secret_[A-Za-z0-9._-]+/)?.[0] ??
+  rawKey.match(/eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+/)?.[0] ??
+  "";
+  
   return { url, key };
 }
 
