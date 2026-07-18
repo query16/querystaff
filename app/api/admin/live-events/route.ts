@@ -15,12 +15,18 @@ const key =
 export async function GET() {
   const { url, key } = getConfig();
 
-  if (!url || !key) {
-    return NextResponse.json(
-      { error: "Variables Supabase manquantes" },
-      { status: 500 }
-    );
-  }
+ if (!url || !key) {
+  return NextResponse.json(
+    {
+      error: "Variables Supabase manquantes",
+      urlPresent: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
+      rawKeyPresent: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+      extractedKeyPresent: !!key,
+    },
+    { status: 500 }
+  );
+}
+  
 
   try {
     const response = await fetch(
