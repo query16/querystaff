@@ -97,6 +97,7 @@ export default function LiveDashboard() {
           events.map((event) => (
             <p key={event.id}>
               {event.event_type} —{" "}
+              
               {new Date(event.created_at).toLocaleTimeString("fr-FR")}
             </p>
           ))
