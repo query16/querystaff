@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import MainMenu from "../components/MainMenu";
+import LiveTracker from "../components/LiveTracker";
 export const metadata: Metadata = {
   title: "QueryStaff — Vos collaborateurs IA spécialisés",
   description:
@@ -23,6 +24,7 @@ export default function RootLayout({
       </head>
         <body>
         <MainMenu />
+        <LiveTracker />
         {children}
 
         <footer
