@@ -9,7 +9,8 @@ function clean(value?: string) {
 }
 
 function getSupabase() {
-  const url = clean(process.env.NEXT_PUBLIC_SUPABASE_URL);
+  const rawUrl = clean(process.env.NEXT_PUBLIC_SUPABASE_URL);
+  const url = rawUrl ? new URL(rawUrl).origin : "";
   const key = clean(process.env.SUPABASE_SERVICE_ROLE_KEY);
 
   if (!url || !key) return null;
