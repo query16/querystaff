@@ -1,62 +1,49 @@
- import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 
-function getConfig() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
- const rawKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? "";
+function clean(value?: string) {
+  return (value ?? "")
+    .replace(/[\u0000-\u001F\u007F\u200B-\u200D\uFEFF]/g, "")
+    .replace(/^["']|["']$/g, "")
+    .trim();
+}
 
-const key =
-  rawKey.match(/sb_secret_[A-Za-z0-9._-]+/)?.[0] ??
-  rawKey.match(/eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+/)?.[0] ??
-  "";
-  
-  return { url, key };
+function getSupabase() {
+  const url = clean(process.env.NEXT_PUBLIC_SUPABASE_URL);
+  const key = clean(process.env.SUPABASE_SERVICE_ROLE_KEY);
+
+  if (!url || !key) return null;
+
+  return createClient(url, key);
 }
 
 export async function GET() {
-  const { url, key } = getConfig();
+  const supabase = getSupabase();
 
- if (!url || !key) {
-  return NextResponse.json(
-    {
-      error: "Variables Supabase manquantes",
-      urlPresent: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
-      rawKeyPresent: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
-      extractedKeyPresent: !!key,
-    },
-    { status: 500 }
-  );
-}
-  
-
-  try {
-    const response = await fetch(
-      `${url}/rest/v1/live_events?select=*&order=created_at.desc&limit=20`,
-      {
-        headers: {
-          apikey: key,
-        },
-      }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return NextResponse.json({ error: data }, { status: response.status });
-    }
-
-    return NextResponse.json({ events: data });
-  } catch (error) {
+  if (!supabase) {
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Erreur inconnue" },
+      { error: "Variables Supabase manquantes" },
       { status: 500 }
     );
   }
+
+  const { data, error } = await supabase
+    .from("live_events")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .limit(20);
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  return NextResponse.json({ events: data ?? [] });
 }
 
 export async function POST(request: Request) {
-  const { url, key } = getConfig();
+  const supabase = getSupabase();
 
-  if (!url || !key) {
+  if (!supabase) {
     return NextResponse.json(
       { error: "Variables Supabase manquantes" },
       { status: 500 }
@@ -65,30 +52,14 @@ export async function POST(request: Request) {
 
   const body = await request.json();
 
-  try {
-    const response = await fetch(`${url}/rest/v1/live_events`, {
-      method: "POST",
-      headers: {
-        apikey: key,
-        "Content-Type": "application/json",
-        Prefer: "return=minimal",
-      },
-      body: JSON.stringify({
-        session_id: crypto.randomUUID(),
-        event_type: body.type || "Visiteur arrivé",
-      }),
-    });
+  const { error } = await supabase.from("live_events").insert({
+    session_id: crypto.randomUUID(),
+    event_type: body.type || "Visiteur arrivé",
+  });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      return NextResponse.json({ error: errorText }, { status: response.status });
-    }
-
-    return NextResponse.json({ ok: true });
-  } catch (error) {
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Erreur inconnue" },
-      { status: 500 }
-    );
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
+
+  return NextResponse.json({ ok: true });
 }
