@@ -98,6 +98,12 @@ export async function GET(request: Request) {
         },
       },
     ],
+    metadata: {
+  agent_key: agentKey,
+  agent_name: agent.name,
+  agent_role: agent.role,
+  amount: String(agent.amount),
+},
     success_url: `${url.origin}/paiement-reussi?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${url.origin}/commander?agent=${agentKey}`,
   });
