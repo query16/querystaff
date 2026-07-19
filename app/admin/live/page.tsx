@@ -102,7 +102,7 @@ export default function LiveDashboard() {
             {event.page && <> • {event.page}</>}
 {event.device && <> • {event.device}</>}
 {event.browser && <> • {event.browser}</>}  
-              {new Date(event.created_at).toLocaleTimeString("fr-FR")}
+{" — "}{new Date(event.created_at).toLocaleTimeString("fr-FR")}
             </p>
           ))
         )}
