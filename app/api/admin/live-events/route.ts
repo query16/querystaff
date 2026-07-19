@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 function clean(value?: string) {
   return (value ?? "")
     .replace(/[\u0000-\u001F\u007F\u200B-\u200D\uFEFF]/g, "")
@@ -42,9 +42,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const cf = (request as Request & {
-  cf?: { country?: string; city?: string };
-}).cf;
+  const { cf } = getCloudflareContext();
   const supabase = getSupabase();
 
   if (!supabase) {
