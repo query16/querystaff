@@ -5,9 +5,12 @@ import { useEffect, useState } from "react";
 type LiveEvent = {
   id: number;
   event_type: string;
-  created_at: string;page?: string | null;
-browser?: string | null;
-device?: string | null;
+  created_at: string;
+  page?: string | null;
+  browser?: string | null;
+  device?: string | null;
+  country?: string | null;
+  city?: string | null;
 };
 
 export default function LiveDashboard() {
@@ -99,6 +102,8 @@ export default function LiveDashboard() {
           events.map((event) => (
             <p key={event.id}>
               {event.event_type} —{" "}
+              {event.country && <> • {event.country}</>}
+{event.city && <> • {event.city}</>}
             {event.page && <> • {event.page}</>}
 {event.device && <> • {event.device}</>}
 {event.browser && <> • {event.browser}</>}  
