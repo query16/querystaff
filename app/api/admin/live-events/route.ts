@@ -72,3 +72,4 @@ city: cf?.city || body.city || null,
 
   return NextResponse.json({ ok: true });
 }
+
