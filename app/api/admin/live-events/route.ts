@@ -42,6 +42,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const cf = (request as Request & {
+  cf?: { country?: string; city?: string };
+}).cf;
   const supabase = getSupabase();
 
   if (!supabase) {
@@ -59,6 +62,10 @@ export async function POST(request: Request) {
     page: body.page || null,
 browser: body.browser || null,
 device: body.device || null,
+
+
+country: cf?.country || body.country || null,
+city: cf?.city || body.city || null,
   });
 
   if (error) {
