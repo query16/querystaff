@@ -12,6 +12,15 @@ type LiveEvent = {
   country?: string | null;
   city?: string | null;
 };
+function countryToFlag(country?: string | null) {
+  if (!country || country.length !== 2) return "";
+
+  return country
+    .toUpperCase()
+    .split("")
+    .map((letter) => String.fromCodePoint(127397 + letter.charCodeAt(0)))
+    .join("");
+}
 
 export default function LiveDashboard() {
   const [events, setEvents] = useState<LiveEvent[]>([]);
@@ -102,8 +111,8 @@ export default function LiveDashboard() {
           events.map((event) => (
             <p key={event.id}>
               {event.event_type} —{" "}
-              {event.country && <> • {event.country}</>}
-{event.city && <> • {event.city}</>}
+              {event.country && <> • {countryToFlag(event.country)} {event.country}</>}
+              {event.city && <> • {event.city}</>}
             {event.page && <> • {event.page}</>}
 {event.device && <> • {event.device}</>}
 {event.browser && <> • {event.browser}</>}  
