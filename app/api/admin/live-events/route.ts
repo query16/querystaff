@@ -56,6 +56,9 @@ export async function POST(request: Request) {
   const { error } = await supabase.from("live_events").insert({
     session_id: crypto.randomUUID(),
     event_type: body.type || "Visiteur arrivé",
+    page: body.page || null,
+browser: body.browser || null,
+device: body.device || null,
   });
 
   if (error) {
