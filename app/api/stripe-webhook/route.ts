@@ -20,12 +20,12 @@ export async function POST(request: Request) {
 let event: Stripe.Event;
 
 try {
-  event = stripe.webhooks.constructEvent(
+  event = await stripe.webhooks.constructEventAsync(
     body,
     signature,
     process.env.STRIPE_WEBHOOK_SECRET!
   );
-} catch {
+} catch (error) {
   return NextResponse.json(
     { error: "Signature Stripe invalide" },
     { status: 400 }
