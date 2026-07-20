@@ -1,6 +1,17 @@
 import Link from "next/link";
+import { createClient } from "../../../lib/supabase/server";
 
-export default function CollaborateursPage() {
+export default async function CollaborateursPage() {
+    const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+    const { data: collaborators } = await supabase
+    .from("collaborator_configurations")
+    .select("*")
+    .eq("user_id", user?.id)
+    .order("created_at", { ascending: false });
   return (
     <main style={styles.main}>
       <section style={styles.section}>
@@ -10,15 +21,35 @@ export default function CollaborateursPage() {
         <p style={styles.text}>
           Retrouvez ici les collaborateurs IA choisis pour accompagner votre entreprise.
         </p>
-        <div style={styles.card}>
-          <h2>Votre équipe QueryStaff</h2>
-          <p style={styles.text}>
-            Vos collaborateurs actifs apparaîtront ici après votre commande.
-          </p>
-          <Link href="/#collaborateurs" style={styles.button}>
-            Découvrir les collaborateurs IA
-          </Link>
-        </div>
+        {collaborators && collaborators.length > 0 ? (
+  collaborators.map((collaborator) => (
+    <div key={collaborator.id} style={styles.card}>
+      <h2>{collaborator.agent}</h2>
+
+      <p style={styles.text}>
+        <strong>Entreprise :</strong> {collaborator.company}
+      </p>
+
+      <p style={styles.text}>
+        <strong>Secteur :</strong> {collaborator.sector}
+      </p>
+
+      <p style={styles.text}>
+        <strong>Objectifs :</strong> {collaborator.goals}
+      </p>
+    </div>
+  ))
+) : (
+  <div style={styles.card}>
+    <h2>Votre équipe QueryStaff</h2>
+    <p style={styles.text}>
+      Aucun collaborateur configuré pour le moment.
+    </p>
+    <Link href="/#collaborateurs" style={styles.button}>
+      Découvrir les collaborateurs IA
+    </Link>
+  </div>
+)}
       </section>
     </main>
   );
