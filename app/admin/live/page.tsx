@@ -11,6 +11,7 @@ type LiveEvent = {
   device?: string | null;
   country?: string | null;
   city?: string | null;
+  amount?: number | null;
 };
 function countryToFlag(country?: string | null) {
   if (!country || country.length !== 2) return "";
@@ -44,11 +45,21 @@ export default function LiveDashboard() {
 
     return () => clearInterval(interval);
   }, []);
+const paymentEvents = events.filter(
+  (event) => event.event_type === "Paiement validé"
+);
 
+const paymentsCount = paymentEvents.length;
+
+const revenueToday = paymentEvents.reduce(
+  (total, event) => total + Number(event.amount || 0),
+  0
+);
   const cards = [
     { title: "Visiteurs", value: String(events.length), icon: "👥" },
-    { title: "Paiements", value: "0", icon: "💳" },
-    { title: "CA du jour", value: "0 €", icon: "💰" },
+    
+   { title: "Paiements validés", value: String(paymentsCount), icon: "💳" },
+{ title: "CA du jour", value: `${revenueToday.toFixed(2)} €`, icon: "💰" },
     { title: "Conversations IA", value: "0", icon: "🤖" },
   ];
 
