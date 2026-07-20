@@ -11,7 +11,7 @@ type LiveEvent = {
   device?: string | null;
   country?: string | null;
   city?: string | null;
-  amount?: number | null;
+  amount_cents?: number | null;
 };
 function countryToFlag(country?: string | null) {
   if (!country || country.length !== 2) return "";
@@ -52,8 +52,8 @@ const paymentEvents = events.filter(
 const paymentsCount = paymentEvents.length;
 
 const revenueToday = paymentEvents.reduce(
-  (total, event) => total + Number(event.amount || 0),
-  0
+ (total, event) => total + Number(event.amount_cents || 0) / 100,
+0
 );
   const cards = [
     { title: "Visiteurs", value: String(events.length), icon: "👥" },
