@@ -14,6 +14,7 @@ type LiveEvent = {
   amount_cents?: number | null;
   agent?: string | null;
   customer_email?: string | null;
+  customer_name?: string | null;
 };
 function countryToFlag(country?: string | null) {
   if (!country || country.length !== 2) return "";
@@ -126,10 +127,10 @@ const revenueToday = paymentEvents.reduce(
               {event.event_type}
 {event.event_type === "Paiement validé" ? (
   <>
-    {event.agent && <> — {event.agent}</>}
- {event.customer_email && <> • {event.customer_email}</>}   
-    {typeof event.amount_cents === "number" && (
-      
+ {event.agent && <> — {event.agent}</>} 
+  {event.customer_name && <> • {event.customer_name}</>}
+    {event.customer_email && <> • {event.customer_email}</>}
+     {typeof event.amount_cents === "number" && ( 
  
       <> — {(event.amount_cents / 100).toFixed(2).replace(".", ",")} €</>
     )}
