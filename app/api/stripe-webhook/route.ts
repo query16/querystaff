@@ -62,7 +62,8 @@ if (existingPayment) {
   session.customer_details?.email ||
   session.customer_email ||
   null,
-  session_id: session.id,
+customer_name: session.customer_details?.name || null,
+session_id: session.id,
 });
 }
 return NextResponse.json({ received: true });
