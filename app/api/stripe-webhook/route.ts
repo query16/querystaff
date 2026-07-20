@@ -42,6 +42,18 @@ try {
 }
 if (event.type === "checkout.session.completed") {
   const session = event.data.object as Stripe.Checkout.Session;
+  const { data: existingPayment } = await supabase
+  .from("live_events")
+  .select("id")
+  .eq("session_id", session.id)
+  .maybeSingle();
+
+if (existingPayment) {
+  return NextResponse.json({
+    received: true,
+    duplicate: true,
+  });
+}
   await supabase.from("live_events").insert({
   event_type: "Paiement validé",
   amount_cents: Number(session.metadata?.amount || 0),
