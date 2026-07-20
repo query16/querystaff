@@ -46,7 +46,7 @@ if (event.type === "checkout.session.completed") {
   .from("live_events")
   .select("id")
   .eq("session_id", session.id)
-  .maybeSingle();
+.maybeSingle();
 
 if (existingPayment) {
   return NextResponse.json({
@@ -54,11 +54,15 @@ if (existingPayment) {
     duplicate: true,
   });
 }
-  await supabase.from("live_events").insert({
+ await supabase.from("live_events").insert({
   event_type: "Paiement validé",
   amount_cents: Number(session.metadata?.amount || 0),
   agent: session.metadata?.agent_name || null,
-session_id: session.id,
+ customer_email:
+  session.customer_details?.email ||
+  session.customer_email ||
+  null,
+  session_id: session.id,
 });
 }
 return NextResponse.json({ received: true });
