@@ -12,6 +12,7 @@ type LiveEvent = {
   country?: string | null;
   city?: string | null;
   amount_cents?: number | null;
+  agent?: string | null;
 };
 function countryToFlag(country?: string | null) {
   if (!country || country.length !== 2) return "";
@@ -121,7 +122,17 @@ const revenueToday = paymentEvents.reduce(
         ) : (
           events.map((event) => (
             <p key={event.id}>
-              {event.event_type} —{" "}
+              {event.event_type}
+{event.event_type === "Paiement validé" ? (
+  <>
+    {event.agent && <> — {event.agent}</>}
+    {typeof event.amount_cents === "number" && (
+      <> — {(event.amount_cents / 100).toFixed(2).replace(".", ",")} €</>
+    )}
+  </>
+) : (
+  <> — </>
+)}
               {event.country && <> • {countryToFlag(event.country)} {event.country}</>}
               {event.city && <> • {event.city}</>}
             {event.page && <> • {event.page}</>}
