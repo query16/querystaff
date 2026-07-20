@@ -30,6 +30,7 @@ try {
     error instanceof Error ? error.message : String(error);
 
   console.error("Erreur webhook Stripe :", message);
+  
 
   return NextResponse.json(
     {
@@ -43,9 +44,9 @@ if (event.type === "checkout.session.completed") {
   const session = event.data.object as Stripe.Checkout.Session;
   await supabase.from("live_events").insert({
   event_type: "Paiement validé",
-  amount: Number(session.metadata?.amount || 0),
-  agent_name: session.metadata?.agent_name || null,
-  stripe_session_id: session.id,
+  amount_cents: Number(session.metadata?.amount || 0),
+  agent: session.metadata?.agent_name || null,
+session_id: session.id,
 });
 }
 return NextResponse.json({ received: true });
