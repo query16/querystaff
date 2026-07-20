@@ -26,8 +26,16 @@ try {
     process.env.STRIPE_WEBHOOK_SECRET!
   );
 } catch (error) {
+  const message =
+    error instanceof Error ? error.message : String(error);
+
+  console.error("Erreur webhook Stripe :", message);
+
   return NextResponse.json(
-    { error: "Signature Stripe invalide" },
+    {
+      error: "Signature Stripe invalide",
+      details: message,
+    },
     { status: 400 }
   );
 }
