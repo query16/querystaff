@@ -60,14 +60,15 @@ const paymentEvents = todayEvents.filter(
 );
 
 const paymentsCount = paymentEvents.length;
-
+const visitorEvents = todayEvents.filter(
+  (event) => event.event_type === "Visiteur arrivé"
+);
 const revenueToday = paymentEvents.reduce(
   (total, event) => total + Number(event.amount_cents || 0) / 100,
   0
 );
   const cards = [
-  { title: "Visiteurs", value: String(todayEvents.length), icon: "👥" },
-    
+  { title: "Visiteurs", value: String(visitorEvents.length), icon: "👥" },
    { title: "Paiements validés", value: String(paymentsCount), icon: "💳" },
 { title: "CA du jour", value: `${revenueToday.toFixed(2)} €`, icon: "💰" },
     { title: "Conversations IA", value: "0", icon: "🤖" },
@@ -129,7 +130,7 @@ const revenueToday = paymentEvents.reduce(
         {events.length === 0 ? (
           <p>Aucune activité pour le moment.</p>
         ) : (
-          events.map((event) => (
+          todayEvents.map((event) => (
             <p key={event.id}>
               {event.event_type}
 {event.event_type === "Paiement validé" ? (
