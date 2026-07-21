@@ -37,6 +37,12 @@ export default async function CollaborateursPage() {
       <p style={styles.text}>
         <strong>Objectifs :</strong> {collaborator.goals}
       </p>
+      <Link
+  href={`/espace-client/collaborateurs/${collaborator.id}`}
+  style={styles.button}
+>
+  Confier une mission
+</Link>
     </div>
   ))
 ) : (
