@@ -48,18 +48,25 @@ export default function LiveDashboard() {
 
     return () => clearInterval(interval);
   }, []);
-const paymentEvents = events.filter(
+const todayKey = new Date().toLocaleDateString("en-CA");
+
+const todayEvents = events.filter(
+  (event) =>
+    new Date(event.created_at).toLocaleDateString("en-CA") === todayKey
+);
+
+const paymentEvents = todayEvents.filter(
   (event) => event.event_type === "Paiement validé"
 );
 
 const paymentsCount = paymentEvents.length;
 
 const revenueToday = paymentEvents.reduce(
- (total, event) => total + Number(event.amount_cents || 0) / 100,
-0
+  (total, event) => total + Number(event.amount_cents || 0) / 100,
+  0
 );
   const cards = [
-    { title: "Visiteurs", value: String(events.length), icon: "👥" },
+  { title: "Visiteurs", value: String(todayEvents.length), icon: "👥" },
     
    { title: "Paiements validés", value: String(paymentsCount), icon: "💳" },
 { title: "CA du jour", value: `${revenueToday.toFixed(2)} €`, icon: "💰" },
