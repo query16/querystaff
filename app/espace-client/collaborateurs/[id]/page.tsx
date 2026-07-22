@@ -69,7 +69,7 @@ if (!response.ok) {
   return;
 }
     setContent("");
-    setMessage("✅ Mission envoyée avec succès à votre collaborateur IA.");
+    setMessage(result.result || "✅ Mission réalisée avec succès.");
     setSending(false);
   }
 
