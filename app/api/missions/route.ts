@@ -66,7 +66,9 @@ if (!openaiResponse.ok) {
   );
 }
 
-const resultText = openaiResult.output_text || "Réponse indisponible.";
+const resultText =
+  openaiResult.output?.[0]?.content?.[0]?.text ||
+  "Réponse indisponible.";
   return NextResponse.json({
     success: true,
     mission,
