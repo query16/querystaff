@@ -45,9 +45,31 @@ if (!openaiApiKey) {
       { status: 404 }
     );
   }
+const openaiResponse = await fetch("https://api.openai.com/v1/responses", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${openaiApiKey}`,
+  },
+  body: JSON.stringify({
+    model: "gpt-4.1-mini",
+    input: mission.content,
+  }),
+});
 
+const openaiResult = await openaiResponse.json();
+
+if (!openaiResponse.ok) {
+  return NextResponse.json(
+    { error: openaiResult?.error?.message || "Erreur OpenAI." },
+    { status: 500 }
+  );
+}
+
+const resultText = openaiResult.output_text || "Réponse indisponible.";
   return NextResponse.json({
     success: true,
     mission,
+    result: resultText,
   });
 }
