@@ -115,25 +115,25 @@ export default function ConnexionsPage() {
                 }}
               >
                 {reseau.description}
-              </p>
-
-              <button
-                type="button"
-                style={{
-                  width: "100%",
-                  marginTop: "20px",
-                  padding: "14px 18px",
-                  border: "none",
-                  borderRadius: "999px",
-                  background:
-                    "linear-gradient(90deg, #18d9d1 0%, #5577ff 55%, #b36bff 100%)",
-                  color: "white",
-                  fontWeight: 800,
-                  cursor: "pointer",
-                }}
-              >
-                Connecter
-              </button>
+                </p>
+              <Link
+  href={reseau.nom === "Facebook" ? "/api/meta/connect" : "#"}
+  style={{
+    display: "block",
+    width: "100%",
+    marginTop: "20px",
+    padding: "14px 18px",
+    borderRadius: "999px",
+    background:
+      "linear-gradient(90deg, #18d9d1 0%, #5577ff 55%, #b36cff 100%)",
+    color: "white",
+    fontWeight: 800,
+    textAlign: "center",
+    textDecoration: "none",
+  }}
+>
+  Connecter
+</Link>
             </article>
           ))}
         </div>
