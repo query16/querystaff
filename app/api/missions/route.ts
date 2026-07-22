@@ -64,9 +64,9 @@ const openaiResponse = await fetch("https://api.openai.com/v1/responses", {
     Authorization: `Bearer ${openaiApiKey}`,
   },
   body: JSON.stringify({
-    model: "gpt-4.1-mini",
-    input:mission.content,
-  }),
+  model: "gpt-4.1-mini",
+  input: `Tu es ${collaborator.agent}, collaborateur IA spécialisé dans le secteur ${collaborator.sector}. Tes objectifs sont : ${collaborator.goals}. Reste strictement dans ton domaine. Si la demande est hors métier, refuse poliment et recommande le collaborateur QueryStaff adapté. Mission du client : ${mission.content}`,
+}),
 });
 
 const openaiResult = await openaiResponse.json();
