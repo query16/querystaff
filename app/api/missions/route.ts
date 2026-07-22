@@ -44,7 +44,19 @@ if (!openaiApiKey) {
       { error: "Mission introuvable." },
       { status: 404 }
     );
-  }
+  }const { data: collaborator, error: collaboratorError } = await supabase
+  .from("collaborator_configurations")
+  .select("agent, sector, goals")
+  .eq("id", mission.collaborator_id)
+  .eq("user_id", user.id)
+  .single();
+
+if (collaboratorError || !collaborator) {
+  return NextResponse.json(
+    { error: "Collaborateur introuvable." },
+    { status: 404 }
+  );
+}
 const openaiResponse = await fetch("https://api.openai.com/v1/responses", {
   method: "POST",
   headers: {
@@ -53,7 +65,7 @@ const openaiResponse = await fetch("https://api.openai.com/v1/responses", {
   },
   body: JSON.stringify({
     model: "gpt-4.1-mini",
-    input: mission.content,
+    input:mission.content,
   }),
 });
 
