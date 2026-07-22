@@ -27,6 +27,12 @@ const rubriques = [
     href: "/espace-client/abonnement",
     icon: "💳",
   },
+  {
+  title: "Mes connexions",
+  description: "Connecter vos réseaux sociaux à QueryStaff.",
+  href: "/espace-client/connexions",
+  icon: "🔗",
+},
 ];
 
 export default async function EspaceClientPage() {
