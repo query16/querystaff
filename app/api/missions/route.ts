@@ -3,7 +3,14 @@ import { createClient } from "../../../lib/supabase/server";
 
 export async function POST(request: Request) {
   const supabase = await createClient();
+const openaiApiKey = process.env.OPENAI_API_KEY;
 
+if (!openaiApiKey) {
+  return NextResponse.json(
+    { error: "Clé OpenAI absente." },
+    { status: 500 }
+  );
+}
   const {
     data: { user },
   } = await supabase.auth.getUser();
