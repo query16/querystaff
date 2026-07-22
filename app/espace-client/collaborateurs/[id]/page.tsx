@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { useParams } from "next/navigation";
@@ -36,12 +35,16 @@ export default function MissionPage() {
       return;
     }
 
-    const { error } = await supabase.from("missions").insert({
-      user_id: user.id,
-      collaborator_id: collaboratorId,
-      content: content.trim(),
-      status: "pending",
-    });
+    const { data: mission, error } = await supabase
+  .from("missions")
+  .insert({
+    user_id: user.id,
+    collaborator_id: collaboratorId,
+    content: content.trim(),
+    status: "pending",
+  })
+  .select("id")
+  .single();
 
     if (error) {
       setMessage(`Erreur : ${error.message}`);
@@ -78,7 +81,8 @@ export default function MissionPage() {
             onChange={(event) => setContent(event.target.value)}
             placeholder="Exemple : Prépare un communiqué de presse pour mon nouveau titre..."
             style={styles.textarea}
-          />
+ 
+         />
 
           <button
             type="submit"
