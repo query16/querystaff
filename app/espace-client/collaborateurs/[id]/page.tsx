@@ -51,7 +51,23 @@ export default function MissionPage() {
       setSending(false);
       return;
     }
+const response = await fetch("/api/missions", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    missionId: mission.id,
+  }),
+});
 
+const result = await response.json();
+
+if (!response.ok) {
+  setMessage(`Erreur : ${result.error || "Traitement impossible."}`);
+  setSending(false);
+  return;
+}
     setContent("");
     setMessage("✅ Mission envoyée avec succès à votre collaborateur IA.");
     setSending(false);
