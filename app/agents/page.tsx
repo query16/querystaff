@@ -253,12 +253,14 @@ export default function AgentsPage() {
 
 <a
 href={
-  "/agents/" +
-  agent.name
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, "-")
+  agent.name === "Magic Query"
+    ? "/agents/magic-query"
+    : "/agents/" +
+      agent.name
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "-")
 }
   style={{
     display: "inline-flex",
@@ -279,4 +281,4 @@ href={
       </section>
     </main>
   );
-}href={
+}
