@@ -84,6 +84,14 @@ const agents = [
   mission: "Répond aux appels, qualifie les demandes, prend les coordonnées et transmet un résumé.",
   price: "Dès 99 €/mois",
 },
+{
+  name: "Nola",
+  icon: "📅",
+  role: "Rendez-vous & anti-absences",
+  mission:
+    "Confirme les rendez-vous, envoie les rappels, gère les annulations et réduit les rendez-vous non honorés.",
+  price: "Tarif à définir",
+},
 
 ];
 
