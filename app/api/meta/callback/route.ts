@@ -136,7 +136,8 @@ export async function GET(request: Request) {
         requestUrl.origin
       )
     );
-  } catch {
+  } catch (error) {
+  console.error("META_CALLBACK_ERROR", error);
     return NextResponse.redirect(
       new URL(
         "/espace-client/connexions?meta=erreur",
