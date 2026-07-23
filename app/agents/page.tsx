@@ -252,10 +252,13 @@ export default function AgentsPage() {
               </p>
 
 <a
-  href={
-  agent.name === "Léo"
-    ? "/agents/leo"
-    : "/agents/" + agent.name.toLowerCase()
+href={
+  "/agents/" +
+  agent.name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, "-")
 }
   style={{
     display: "inline-flex",
@@ -276,4 +279,4 @@ export default function AgentsPage() {
       </section>
     </main>
   );
-}
+}href={
