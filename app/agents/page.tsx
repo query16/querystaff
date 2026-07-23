@@ -92,6 +92,14 @@ const agents = [
     "Confirme les rendez-vous, envoie les rappels, gère les annulations et réduit les rendez-vous non honorés.",
   price: "Tarif à définir",
 },
+{
+  name: "Magic Query",
+  icon: "✨",
+  role: "Superviseur IA & assistance de secours",
+  mission:
+    "Analyse les blocages, oriente vers le bon agent et accompagne l’abonné étape par étape jusqu’à la solution.",
+  price: "Inclus avec l’abonnement",
+},
 
 ];
 
