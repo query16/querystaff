@@ -122,14 +122,17 @@ export async function GET(request: Request) {
       );
 
     if (error) {
-        console.error("SUPABASE_INSERT_ERROR", error);
-      return NextResponse.redirect(
-        new URL(
-          "/espace-client/connexions?meta=erreur",
-          requestUrl.origin
-        )
-      );
-    }
+  return NextResponse.json(
+    {
+      étape: "enregistrement_supabase",
+      code: error.code,
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+    },
+    { status: 500 }
+  );
+}
 
     return NextResponse.redirect(
       new URL(
