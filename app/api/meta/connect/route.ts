@@ -19,7 +19,7 @@ export async function GET() {
   facebookUrl.searchParams.set("client_id", appId);
   facebookUrl.searchParams.set("redirect_uri", redirectUri);
   facebookUrl.searchParams.set("response_type", "code");
-  facebookUrl.searchParams.set("scope", "public_profile,email");
+  facebookUrl.searchParams.set("scope", "public_profile");
 
   return NextResponse.redirect(facebookUrl);
 }
