@@ -78,7 +78,6 @@ const agents = [
     price: "Dès 39 €/mois",
   },
   {
-  {
   name: "Tommy",
   icon: "📞",
   role: "Standard téléphonique IA",
