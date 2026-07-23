@@ -199,6 +199,13 @@ export default function HomePage() {
               mission: "Communiqués, campagnes médias et promotion musicale",
               link: "/agents/milo",
             },
+            {
+  name: "Tommy",
+  icon: "📞",
+  role: "Standard téléphonique IA",
+  mission: "Répond aux appels, qualifie les demandes, prend les coordonnées et transmet un résumé.",
+  link: "/agents/tommy",
+},
           ].map((agent) => (
             <a
               key={agent.name}
