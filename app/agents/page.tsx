@@ -77,6 +77,14 @@ const agents = [
     mission: "Communiqués de presse, campagnes médias, relances et promotion musicale",
     price: "Dès 39 €/mois",
   },
+  {
+  {
+  name: "Tommy",
+  icon: "📞",
+  role: "Standard téléphonique IA",
+  mission: "Répond aux appels, qualifie les demandes, prend les coordonnées et transmet un résumé.",
+  price: "Dès 99 €/mois",
+},
 
 ];
 
