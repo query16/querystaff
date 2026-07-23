@@ -91,7 +91,7 @@ const revenueToday = paymentEvents.reduce(
       <section
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
           gap: "16px",
           marginBottom: "24px",
         }}
