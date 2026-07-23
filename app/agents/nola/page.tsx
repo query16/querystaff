@@ -20,6 +20,18 @@
           boxShadow: "0 24px 80px rgba(0, 0, 0, 0.35)",
         }}
       >
+        <img
+  src="/avatars/nola.png"
+  alt="Nola, agente de rappel et planification"
+  style={{
+    width: "100%",
+    maxWidth: "520px",
+    display: "block",
+    margin: "0 auto 32px",
+    borderRadius: "24px",
+    boxShadow: "0 20px 60px rgba(0, 0, 0, 0.35)",
+  }}
+/>
         <div style={{ fontSize: "64px", marginBottom: "20px" }}>📅</div>
 
         <p
