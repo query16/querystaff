@@ -10,6 +10,7 @@ const agents = [
   {
     name: "Emma",
     icon: "👩‍💼",
+    avatar: "/avatars/emma.png",
     role: "Commerce",
     mission: "Relation client, questions fréquentes et relance commerciale",
     price: "Dès 39 €/mois",
@@ -17,6 +18,7 @@ const agents = [
   {
     name: "Maxime",
     icon: "🛍️",
+    avatar: "/avatars/maxime.png",
     role: "Dropshipping",
     mission: "Recherche de produits prometteurs et analyse des tendances",
     price: "Dès 59 €/mois",
@@ -31,6 +33,7 @@ const agents = [
   {
     name: "Sofia",
     icon: "👩‍⚕️",
+    avatar: "/avatars/sofia.png",
     role: "Santé",
     mission: "Accueil, rappels de rendez-vous et orientation des patients",
     price: "Dès 39 €/mois",
@@ -38,6 +41,7 @@ const agents = [
   {
     name: "Lina",
     icon: "📱",
+    avatar: "/avatars/lina.png",
     role: "Réseaux sociaux",
     mission: "Idées de publications, calendrier éditorial et réponses",
     price: "Dès 49 €/mois",
@@ -45,6 +49,7 @@ const agents = [
   {
     name: "Noah",
     icon: "🏠",
+    avatar: "/avatars/noah.png",
     role: "Immobilier",
     mission: "Qualification des prospects et organisation des visites",
     price: "Dès 49 €/mois",
@@ -59,6 +64,7 @@ const agents = [
   {
     name: "Léo",
     icon: "🔧",
+    avatar: "/avatars/leo.png",
     role: "Garage",
     mission: "Prise de rendez-vous, devis et suivi des réparations",
     price: "Dès 39 €/mois",
@@ -66,6 +72,7 @@ const agents = [
   {
     name: "Clara",
     icon: "📊",
+    avatar: "/avatars/clara.png",
     role: "Administration",
     mission: "Classement, facturation, rappels et organisation quotidienne",
     price: "Dès 49 €/mois",
@@ -73,6 +80,7 @@ const agents = [
   {
     name: "Milo",
     icon: "🎙️",
+    avatar: "/avatars/milo.png",
     role: "Relations presse & musique",
     mission: "Communiqués de presse, campagnes médias, relances et promotion musicale",
     price: "Dès 39 €/mois",
@@ -80,6 +88,7 @@ const agents = [
   {
   name: "Tommy",
   icon: "📞",
+  avatar: "/avatars/tommy.png",
   role: "Standard téléphonique IA",
   mission: "Répond aux appels, qualifie les demandes, prend les coordonnées et transmet un résumé.",
   price: "Dès 99 €/mois",
@@ -87,6 +96,7 @@ const agents = [
 {
   name: "Nola",
   icon: "📅",
+  avatar: "/avatars/nola.png",
   role: "Rendez-vous & anti-absences",
   mission:
     "Confirme les rendez-vous, envoie les rappels, gère les annulations et réduit les rendez-vous non honorés.",
@@ -95,6 +105,7 @@ const agents = [
 {
   name: "Magic Query",
   icon: "✨",
+  avatar: "/avatars/magic-query.png",
   role: "Superviseur IA & assistance de secours",
   mission:
     "Analyse les blocages, oriente vers le bon agent et accompagne l’abonné étape par étape jusqu’à la solution.",
