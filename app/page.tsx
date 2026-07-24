@@ -68,7 +68,7 @@ export default function HomePage() {
           fontSize: "14px",
         }}
       >
-        11 collaborateurs IA spécialisés — disponibles 24h/24
+        14 collaborateurs IA spécialisés — disponibles 24h/24
       </p>
 
       <h1
