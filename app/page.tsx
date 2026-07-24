@@ -252,7 +252,7 @@ export default function HomePage() {
             textDecoration: "none",
           }}
         >
-          Voir les 11 collaborateurs
+          Voir les 14 collaborateurs
         </a>
       </div>
 
