@@ -3,6 +3,7 @@ const agents = [
   {
     name: "Gordon",
     icon: "👨‍🍳",
+    avatar: "/avatars/g.jpeg",
     role: "Restaurant",
     mission: "Réservations, accueil clients, menus et allergènes",
     price: "Dès 39 €/mois",
