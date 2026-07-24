@@ -83,6 +83,17 @@ export default function HomePage() {
           <br />
           disponible immédiatement
         </h1>
+        <p
+  style={{
+    margin: "0 0 24px",
+    color: "#6ee7f9",
+    fontSize: "clamp(20px, 3vw, 30px)",
+    fontWeight: 800,
+    lineHeight: 1.25,
+  }}
+>
+  Avec QueryStaff, votre entreprise garde toujours une longueur d’avance.
+</p>
 
         <p
           style={{
