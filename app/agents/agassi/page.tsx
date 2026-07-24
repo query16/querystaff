@@ -9,7 +9,18 @@ export default function AgassiPage() {
           "radial-gradient(circle at top left, #12335e 0%, #07111f 45%, #040912 100%)",
         color: "white",
       }}
-    >
+    ><img
+  src="/avatars/agassi.png"
+  alt="Agassi, collaborateur IA pour les formalités d’entreprise"
+  style={{
+    width: "100%",
+    maxWidth: "520px",
+    display: "block",
+    margin: "0 auto 32px",
+    borderRadius: "24px",
+    boxShadow: "0 20px 60px rgba(0, 0, 0, 0.35)",
+  }}
+/>
       <section style={{ maxWidth: "900px", margin: "0 auto" }}>
         <a
           href="/agents"
