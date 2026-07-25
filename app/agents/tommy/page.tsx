@@ -111,9 +111,22 @@
             fontWeight: 800,
             textDecoration: "none",
           }}
-        >
-          Retour aux collaborateurs IA
-        </a>
+   <a
+  href="/api/checkout?agent=tommy"
+  style={{
+    display: "inline-block",
+    marginTop: "34px",
+    marginRight: "14px",
+    padding: "16px 26px",
+    borderRadius: "999px",
+    background: "linear-gradient(90deg, #00d8d8, #9b6cff)",
+    color: "white",
+    fontWeight: 800,
+    textDecoration: "none",
+  }}
+>
+  Choisir Tommy — 99 €/mois
+</a>
       </section>
     </main>
   );
