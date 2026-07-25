@@ -1,19 +1,49 @@
  export default function MiloPage() {
+  const missions = [
+    "Rédiger les communiqués et dossiers de presse",
+    "Préparer les e-mails pour les journalistes, radios et médias",
+    "Organiser les campagnes de lancement musical",
+    "Préparer les relances et les demandes d’interview",
+    "Suivre les retombées presse et les contacts médias",
+  ];
+
   return (
     <main
       style={{
         minHeight: "100vh",
-        padding: "60px 40px",
+        padding: "60px 24px",
         background:
-          "radial-gradient(circle at top left, #12335e 0%, #07111f 45%, #040912 100%)",
+          "radial-gradient(circle at top left, #12356b 0%, #07152f 38%, #020817 100%)",
         color: "white",
       }}
     >
-      <section style={{ maxWidth: "900px", margin: "0 auto" }}>
+      <section
+        style={{
+          width: "100%",
+          maxWidth: "900px",
+          margin: "0 auto",
+        }}
+      >
+        <img
+          src="/avatars/milo.png"
+          alt="Milo, collaborateur IA pour artistes et professionnels de la musique"
+          style={{
+            display: "block",
+            width: "100%",
+            maxWidth: "520px",
+            height: "auto",
+            margin: "0 auto 36px",
+            borderRadius: "24px",
+            boxShadow: "0 20px 60px rgba(0, 0, 0, 0.35)",
+          }}
+        />
+
         <a
           href="/agents"
           style={{
-            color: "#6ee7f9",
+            display: "inline-block",
+            marginBottom: "28px",
+            color: "#60e7f9",
             fontWeight: 800,
             textDecoration: "none",
           }}
@@ -23,81 +53,80 @@
 
         <div
           style={{
-            marginTop: "30px",
             padding: "34px",
-            border: "1px solid rgba(255,255,255,0.12)",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
             borderRadius: "28px",
-            background: "rgba(255,255,255,0.07)",
+            background: "rgba(255, 255, 255, 0.07)",
+            boxShadow: "0 20px 60px rgba(0, 0, 0, 0.25)",
           }}
         >
-          <div style={{ fontSize: "64px" }}>🎙️</div>
+          <div
+            style={{
+              fontSize: "52px",
+              marginBottom: "10px",
+            }}
+          >
+            🎵
+          </div>
 
           <h1
             style={{
-              margin: "20px 0 8px",
+              margin: "0 0 8px",
               fontSize: "56px",
-              letterSpacing: "-2px",
+              lineHeight: 1.05,
+              color: "#ffffff",
             }}
           >
             Milo
           </h1>
 
-          <p
+          <h2
             style={{
-              color: "#6ee7f9",
-              fontSize: "20px",
-              fontWeight: 800,
+              margin: "0 0 22px",
+              fontSize: "28px",
+              lineHeight: 1.3,
+              color: "#60e7f9",
             }}
           >
             Collaborateur IA pour artistes et professionnels de la musique
-          </p>
+          </h2>
 
           <p
             style={{
-              color: "#c3cede",
-              fontSize: "18px",
+              margin: "0 0 34px",
+              maxWidth: "760px",
+              fontSize: "19px",
               lineHeight: 1.7,
+              color: "#d8e8ff",
             }}
           >
-            Milo accompagne les artistes, labels et producteurs dans leur communication presse et la promotion de leurs projets musicaux.
+            Milo accompagne les artistes, labels et producteurs dans leur
+            communication presse et la promotion de leurs projets musicaux.
           </p>
 
-          <h2>Ses principales missions</h2>
-
-        <ul style={{ color: "#c3cede", lineHeight: 2 }}>
-          <li>Rédiger les communiqués et dossiers de presse</li>
-          <li>Préparer les e-mails pour les journalistes, radios et médias</li>
-          <li>Organiser les campagnes de lancement musical</li>
-          <li>Préparer les relances et les demandes d’interview</li>
-          <li>Suivre les retombées presse et les contacts médias</li>
-        </ul>
-
-          <div
+          <h3
             style={{
-              marginTop: "28px",
-              padding: "20px",
-              borderRadius: "18px",
-              background: "rgba(110,231,249,0.10)",
+              margin: "0 0 20px",
+              fontSize: "25px",
+              color: "#ffffff",
             }}
           >
-  <strong style={{ fontSize: "22px" }}>Dès 39 €/mois</strong>
-           <a
-  href="/api/checkout?agent=milo"
-  style={{
-    display: "inline-block",
-    marginTop: "18px",
-    padding: "14px 24px",
-    borderRadius: "999px",
-    background: "linear-gradient(90deg, #18d7ff, #7b61ff)",
-    color: "white",
-    fontWeight: 800,
-    textDecoration: "none",
-  }}
->
-  Choisir Milo
-</a>          
-         
-          </div>
+            Ses principales missions
+          </h3>
+
+          <ul
+            style={{
+              margin: 0,
+              paddingLeft: "24px",
+              fontSize: "18px",
+              lineHeight: 1.9,
+              color: "#eef6ff",
+            }}
+          >
+            {missions.map((mission) => (
+              <li key={mission}>{mission}</li>
+            ))}
+          </ul>
         </div>
       </section>
     </main>
