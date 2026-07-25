@@ -13,19 +13,24 @@ export async function GET(request: Request) {
 
   const redirectUri = "https://querystaff.com/api/meta/callback";
 
-  if (
-    !code ||
-    !appId ||
-    !appSecret ||
-    !supabaseUrl ||
-    !serviceRoleKey
-  ) {
-    return NextResponse.redirect(
+  const redirectError = (etape: string) =>
+    NextResponse.redirect(
       new URL(
-        "/espace-client/connexions?meta=erreur",
+        `/espace-client/connexions?meta=erreur&etape=${etape}`,
         requestUrl.origin
       )
     );
+
+  if (!code) {
+    return redirectError("code_meta_absent");
+  }
+
+  if (!appId || !appSecret) {
+    return redirectError("variables_meta_absentes");
+  }
+
+  if (!supabaseUrl || !serviceRoleKey) {
+    return redirectError("variables_supabase_absentes");
   }
 
   try {
@@ -33,15 +38,11 @@ export async function GET(request: Request) {
 
     const {
       data: { user },
+      error: userError,
     } = await supabase.auth.getUser();
 
-    if (!user) {
-      return NextResponse.redirect(
-        new URL(
-          "/espace-client/connexions?meta=erreur",
-          requestUrl.origin
-        )
-      );
+    if (userError || !user) {
+      return redirectError("session_utilisateur");
     }
 
     const tokenUrl = new URL(
@@ -61,12 +62,8 @@ export async function GET(request: Request) {
     const tokenData = await tokenResponse.json();
 
     if (!tokenResponse.ok || !tokenData.access_token) {
-      return NextResponse.redirect(
-        new URL(
-          "/espace-client/connexions?meta=erreur",
-          requestUrl.origin
-        )
-      );
+      console.error("META_TOKEN_ERROR", tokenData);
+      return redirectError("jeton_facebook");
     }
 
     const profileUrl = new URL(
@@ -87,12 +84,8 @@ export async function GET(request: Request) {
     const profileData = await profileResponse.json();
 
     if (!profileResponse.ok || !profileData.id) {
-      return NextResponse.redirect(
-        new URL(
-          "/espace-client/connexions?meta=erreur",
-          requestUrl.origin
-        )
-      );
+      console.error("META_PROFILE_ERROR", profileData);
+      return redirectError("profil_facebook");
     }
 
     const adminSupabase = createAdminClient(
@@ -122,17 +115,19 @@ export async function GET(request: Request) {
       );
 
     if (error) {
-  return NextResponse.json(
-    {
-      étape: "enregistrement_supabase",
-      code: error.code,
-      message: error.message,
-      details: error.details,
-      hint: error.hint,
-    },
-    { status: 500 }
-  );
-}
+      console.error("SUPABASE_SOCIAL_CONNECTION_ERROR", error);
+
+      return NextResponse.json(
+        {
+          etape: "enregistrement_supabase",
+          code: error.code,
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+        },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.redirect(
       new URL(
@@ -141,12 +136,7 @@ export async function GET(request: Request) {
       )
     );
   } catch (error) {
-  console.error("META_CALLBACK_ERROR", error);
-    return NextResponse.redirect(
-      new URL(
-        "/espace-client/connexions?meta=erreur",
-        requestUrl.origin
-      )
-    );
+    console.error("META_CALLBACK_ERROR", error);
+    return redirectError("erreur_inconnue");
   }
 }
