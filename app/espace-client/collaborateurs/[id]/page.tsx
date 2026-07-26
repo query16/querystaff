@@ -35,8 +35,10 @@ export default function MissionPage() {
   const [loadingCollaborator, setLoadingCollaborator] = useState(true);
 
   const isTommy =
-    collaborator?.agent?.trim().toLowerCase() === "tommy";
+  collaborator?.agent?.trim().toLowerCase() === "tommy";
 
+const isMagicQuery =
+  collaborator?.agent?.trim().toLowerCase() === "magic query";
   useEffect(() => {
     let isMounted = true;
 
@@ -348,16 +350,17 @@ export default function MissionPage() {
                   : "Envoyer la mission"}
             </button>
 
-            {isTommy && history.length > 0 && (
-              <button
-                type="button"
-                onClick={restartConversation}
-                disabled={sending}
-                style={styles.secondaryButton}
-              >
-                Nouvel appel
-              </button>
-            )}
+            {(isTommy || isMagicQuery) && history.length > 0 && (
+  <button
+    type="button"
+    onClick={restartConversation}
+    disabled={sending}
+    style={styles.secondaryButton}
+  >
+    {isTommy ? "Nouvel appel" : "Nouvelle discussion"}
+  </button>
+)}
+            
           </div>
         </form>
 
