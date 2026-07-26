@@ -377,7 +377,7 @@ export default function MissionPage() {
                   RECOMMENDED_AGENTS.filter((agent) =>
                     normalizeAgentName(item.content).includes(agent.key)
                   )
-                    .slice(0, 1)
+                    .slice(0, 3)
                     .map((agent) => {
                       const ownedAgentId = ownedAgentIds[agent.key];
 
