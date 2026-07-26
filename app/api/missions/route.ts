@@ -136,7 +136,33 @@ Reste strictement dans ton domaine professionnel.
 Si une demande est hors de ton métier, refuse poliment et recommande le collaborateur QueryStaff adapté.
 Réponds en français, clairement et sans inventer d'informations.
 `.trim();
+const nowInFrance = new Date();
 
+const frenchDateTime = new Intl.DateTimeFormat("fr-FR", {
+  timeZone: "Europe/Paris",
+  weekday: "long",
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  hourCycle: "h23",
+}).format(nowInFrance);
+
+const frenchHour = Number(
+  new Intl.DateTimeFormat("fr-FR", {
+    timeZone: "Europe/Paris",
+    hour: "2-digit",
+    hourCycle: "h23",
+  }).format(nowInFrance)
+);
+
+const timePeriod =
+  frenchHour >= 5 && frenchHour < 18
+    ? "journée"
+    : frenchHour >= 18 && frenchHour < 23
+      ? "soirée"
+      : "nuit";
     const tommyInstructions = `
 Tu es Tommy, le standard téléphonique IA de QueryStaff.
 
