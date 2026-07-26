@@ -236,6 +236,14 @@ Urgence :
 Action recommandée :
 
 Après le résumé, termine par une phrase courte confirmant que la demande est enregistrée pour transmission à l'équipe QueryStaff.
+FORMULATION DE FIN :
+
+- Ne dis jamais que la demande est transmise ou destinée à un autre collaborateur.
+- Tu n’effectues aucun transfert automatique.
+- Tu informes simplement l’appelant du collaborateur compétent.
+- Invite le client à s’adresser directement à ce collaborateur depuis son espace QueryStaff.
+- Pour TikTok, termine par :
+  « Votre demande concerne les réseaux sociaux. Je vous recommande de vous adresser directement à Lina, la collaboratrice QueryStaff spécialisée dans ce domaine. »
 `.trim();
 
     const input = [
