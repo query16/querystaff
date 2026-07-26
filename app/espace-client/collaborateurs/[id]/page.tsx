@@ -275,6 +275,7 @@ const isMagicQuery =
                 <p style={styles.bubbleText}>
                   {item.content}
                 </p>
+
               </div>
             ))}
 
@@ -315,7 +316,24 @@ const isMagicQuery =
                 <p style={styles.bubbleText}>
                   {item.content}
                 </p>
+{isMagicQuery &&
+  item.role === "assistant" &&
+  ["gordon", "emma", "maxime", "agassi", "sofia", "lina", "noah", "maya", "léo", "clara", "milo", "tommy", "nola"]
+    .filter((agent) =>
+      item.content.toLowerCase().includes(agent.toLowerCase())
+    )
+    .slice(0, 1)
+    .map((agent) => (
+      <a
+        key={agent}
+        href={`/agents/${agent === "léo" ? "leo" : agent}`}
+        style={styles.secondaryButton}
+      >
+        Découvrir {agent.charAt(0).toUpperCase() + agent.slice(1)}
+      </a>
+    ))}
               </div>
+
             ))}
           </div>
         )}
