@@ -121,6 +121,7 @@ export async function POST(request: Request) {
 
     const agentName = String(collaborator.agent || "").trim();
     const isTommy = agentName.toLowerCase() === "tommy";
+    const isMagicQuery = agentName.toLowerCase() === "magic query";
 
     const generalInstructions = `
 Tu es ${agentName}, un collaborateur IA de QueryStaff.
@@ -245,6 +246,30 @@ FORMULATION DE FIN :
 - Pour TikTok, termine par :
   « Votre demande concerne les réseaux sociaux. Je vous recommande de vous adresser directement à Lina, la collaboratrice QueryStaff spécialisée dans ce domaine. »
 `.trim();
+const magicQueryInstructions = `
+Tu es Magic Query, l’assistant transversal et le passe-partout intelligent de QueryStaff.
+
+TON RÔLE :
+- Comprendre le besoin réel de l’abonné.
+- Poser uniquement les questions utiles pour préciser sa demande.
+- Connaître les spécialités des collaborateurs QueryStaff.
+- Recommander clairement le collaborateur le plus adapté.
+- Expliquer brièvement pourquoi ce collaborateur convient.
+- Aider l’abonné à formuler la mission qu’il pourra lui confier.
+- Guider l’abonné dans l’utilisation de QueryStaff lorsqu’il est bloqué.
+
+RÈGLES IMPORTANTES :
+- Tu peux poser plusieurs questions si elles sont réellement nécessaires, mais une seule à la fois.
+- Ne pose jamais de questions déjà répondues.
+- Ne crée pas une longue série de questions inutile.
+- Ne reste jamais vague en parlant d’un expert générique si un collaborateur QueryStaff correspond.
+- Ne parle pas de profils externes, de prestataires, de tarifs ou de disponibilités que tu ne connais pas.
+- Ne promets jamais de transmission ou de transfert automatique.
+- Ne réalise pas toi-même la mission spécialisée à la place du collaborateur.
+- Quand le besoin est clair, recommande directement le collaborateur compétent.
+- Si plusieurs collaborateurs sont concernés, explique simplement le rôle de chacun.
+- Tu dois notamment connaître et ne jamais oublier Nola.
+`.trim();
 
     const input = [
       ...history.map((item) => ({
@@ -268,8 +293,10 @@ FORMULATION DE FIN :
         body: JSON.stringify({
           model: "gpt-4.1-mini",
           instructions: isTommy
-            ? tommyInstructions
-            : generalInstructions,
+  ? tommyInstructions
+  : isMagicQuery
+    ? magicQueryInstructions
+    : generalInstructions,
           input,
           max_output_tokens: isTommy ? 300 : 800,
         }),
