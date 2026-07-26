@@ -21,6 +21,36 @@ type Collaborator = {
   goals: string;
 };
 
+type RecommendedAgent = {
+  key: string;
+  name: string;
+  slug: string;
+};
+
+const RECOMMENDED_AGENTS: RecommendedAgent[] = [
+  { key: "GORDON", name: "Gordon", slug: "gordon" },
+  { key: "EMMA", name: "Emma", slug: "emma" },
+  { key: "MAXIME", name: "Maxime", slug: "maxime" },
+  { key: "AGASSI", name: "Agassi", slug: "agassi" },
+  { key: "SOFIA", name: "Sofia", slug: "sofia" },
+  { key: "LINA", name: "Lina", slug: "lina" },
+  { key: "NOAH", name: "Noah", slug: "noah" },
+  { key: "MAYA", name: "Maya", slug: "maya" },
+  { key: "LEO", name: "Léo", slug: "leo" },
+  { key: "CLARA", name: "Clara", slug: "clara" },
+  { key: "MILO", name: "Milo", slug: "milo" },
+  { key: "TOMMY", name: "Tommy", slug: "tommy" },
+  { key: "NOLA", name: "Nola", slug: "nola" },
+];
+
+function normalizeAgentName(value: string) {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim()
+    .toUpperCase();
+}
+
 export default function MissionPage() {
   const params = useParams();
   const collaboratorId = params.id as string;
@@ -33,12 +63,15 @@ export default function MissionPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [sending, setSending] = useState(false);
   const [loadingCollaborator, setLoadingCollaborator] = useState(true);
+  const [ownedAgentIds, setOwnedAgentIds] = useState<Record<string, string>>(
+    {}
+  );
 
   const isTommy =
-  collaborator?.agent?.trim().toLowerCase() === "tommy";
+    collaborator?.agent?.trim().toLowerCase() === "tommy";
 
-const isMagicQuery =
-  collaborator?.agent?.trim().toLowerCase() === "magic query";
+  const isMagicQuery =
+    collaborator?.agent?.trim().toLowerCase() === "magic query";
   useEffect(() => {
     let isMounted = true;
 
@@ -57,12 +90,21 @@ const isMagicQuery =
         return;
       }
 
-      const { data, error } = await supabase
-        .from("collaborator_configurations")
-        .select("agent, sector, goals")
-        .eq("id", collaboratorId)
-        .eq("user_id", user.id)
-        .single();
+      const [
+        { data, error },
+        { data: ownedAgentsData },
+      ] = await Promise.all([
+        supabase
+          .from("collaborator_configurations")
+          .select("agent, sector, goals")
+          .eq("id", collaboratorId)
+          .eq("user_id", user.id)
+          .single(),
+        supabase
+          .from("collaborator_configurations")
+          .select("id, agent")
+          .eq("user_id", user.id),
+      ]);
 
       if (!isMounted) {
         return;
@@ -74,6 +116,20 @@ const isMagicQuery =
         return;
       }
 
+      const agentIds = Object.fromEntries(
+        (ownedAgentsData ?? [])
+          .filter(
+            (item) =>
+              typeof item.id === "string" &&
+              typeof item.agent === "string"
+          )
+          .map((item) => [
+            normalizeAgentName(item.agent),
+            item.id,
+          ])
+      );
+
+      setOwnedAgentIds(agentIds);
       setCollaborator(data);
       setLoadingCollaborator(false);
     }
@@ -316,22 +372,31 @@ const isMagicQuery =
                 <p style={styles.bubbleText}>
                   {item.content}
                 </p>
-{isMagicQuery &&
-  item.role === "assistant" &&
-  ["gordon", "emma", "maxime", "agassi", "sofia", "lina", "noah", "maya", "léo", "clara", "milo", "tommy", "nola"]
-    .filter((agent) =>
-      item.content.toLowerCase().includes(agent.toLowerCase())
-    )
-    .slice(0, 1)
-    .map((agent) => (
-      <a
-        key={agent}
-        href={`/agents/${agent === "léo" ? "leo" : agent}`}
-        style={styles.secondaryButton}
-      >
-        Découvrir {agent.charAt(0).toUpperCase() + agent.slice(1)}
-      </a>
-    ))}
+                {isMagicQuery &&
+                  item.role === "assistant" &&
+                  RECOMMENDED_AGENTS.filter((agent) =>
+                    normalizeAgentName(item.content).includes(agent.key)
+                  )
+                    .slice(0, 1)
+                    .map((agent) => {
+                      const ownedAgentId = ownedAgentIds[agent.key];
+
+                      return (
+                        <a
+                          key={agent.key}
+                          href={
+                            ownedAgentId
+                              ? `/espace-client/collaborateurs/${ownedAgentId}`
+                              : `/agents/${agent.slug}`
+                          }
+                          style={styles.secondaryButton}
+                        >
+                          {ownedAgentId
+                            ? `Accéder à ${agent.name}`
+                            : `Découvrir ${agent.name}`}
+                        </a>
+                      );
+                    })}
               </div>
 
             ))}
@@ -526,6 +591,7 @@ const styles = {
     border: "1px solid rgba(255,255,255,0.3)",
     borderRadius: "999px",
     color: "white",
+    textDecoration: "none",
     fontWeight: 800,
     cursor: "pointer",
     background: "rgba(255,255,255,0.08)",
