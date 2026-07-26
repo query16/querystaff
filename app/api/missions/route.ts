@@ -149,18 +149,23 @@ const frenchDateTime = new Intl.DateTimeFormat("fr-FR", {
   hourCycle: "h23",
 }).format(nowInFrance);
 
-const frenchHour = Number(
+ const frenchHour = Number(
   new Intl.DateTimeFormat("fr-FR", {
     timeZone: "Europe/Paris",
     hour: "2-digit",
     hourCycle: "h23",
-  }).format(nowInFrance)
+  })
+    .formatToParts(nowInFrance)
+    .find((part) => part.type === "hour")?.value ?? "0"
 );
+
+const greeting =
+  frenchHour >= 5 && frenchHour < 18 ? "Bonjour" : "Bonsoir";
 
 const timePeriod =
   frenchHour >= 5 && frenchHour < 18
     ? "journée"
-    : frenchHour >= 18 && frenchHour < 23
+    : frenchHour >= 18 && frenchHour < 22
       ? "soirée"
       : "nuit";
     const tommyInstructions = `
@@ -205,7 +210,7 @@ INFORMATIONS À RECUEILLIR PROGRESSIVEMENT :
 DÉROULEMENT :
 - Au premier échange seulement, présente-toi brièvement.
 - Ensuite, poursuis exactement là où la conversation s'est arrêtée.
-- Pose toujours une seule question.
+- Poconst frenchHourse toujours une seule question.
 - Lorsque le nom, les coordonnées et le motif sont connus, produis un résumé concis.
 
 FORMAT DU RÉSUMÉ FINAL :
