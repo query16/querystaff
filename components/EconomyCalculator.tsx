@@ -5,9 +5,12 @@ import { useState } from "react";
 export default function EconomyCalculator() {
   const [hoursPerWeek, setHoursPerWeek] = useState(10);
   const [hourlyCost, setHourlyCost] = useState(25);
+  const queryStaffCost = 39;
+const monthlyHours = Math.round(hoursPerWeek * 4.33);
+const timeValue = Math.round(monthlyHours * hourlyCost);
 
   const monthlyHumanCost = Math.round(hoursPerWeek * 4.33 * hourlyCost);
-  const queryStaffCost = 49;
+  
   const monthlySavings = Math.max(monthlyHumanCost - queryStaffCost, 0);
   const annualSavings = monthlySavings * 12;
 
@@ -132,7 +135,7 @@ export default function EconomyCalculator() {
             Coût mensuel estimé
           </p>
           <strong style={{ fontSize: "28px" }}>
-            {monthlyHumanCost} €
+            {timeValue}  €
           </strong>
         </div>
 
@@ -162,7 +165,7 @@ export default function EconomyCalculator() {
             Économie annuelle
           </p>
           <strong style={{ fontSize: "28px" }}>
-            {annualSavings} €
+            {Math.max((timeValue - queryStaffCost) * 12, 0)} €
           </strong>
         </div>
       </div>
