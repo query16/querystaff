@@ -130,7 +130,7 @@ const timeValue = Math.round(monthlyHours * hourlyCost);
           }}
         >
           <p style={{ color: "#c3cede", margin: 0 }}>
-            Coût mensuel estimé
+            Valeur mensuelle du temps libéré
           </p>
           <strong style={{ fontSize: "28px" }}>
             {timeValue}  €
@@ -176,7 +176,7 @@ const timeValue = Math.round(monthlyHours * hourlyCost);
           lineHeight: 1.6,
         }}
       >
-        Estimation indicative basée sur un abonnement QueryStaff à 49 €/mois.
+        Estimation indicative basée sur un abonnement QueryStaff à 39 €/mois.
       </p>
     </div>
   );
