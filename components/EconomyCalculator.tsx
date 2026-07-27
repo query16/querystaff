@@ -9,11 +9,9 @@ export default function EconomyCalculator() {
 const monthlyHours = Math.round(hoursPerWeek * 4.33);
 const timeValue = Math.round(monthlyHours * hourlyCost);
 
-  const monthlyHumanCost = Math.round(hoursPerWeek * 4.33 * hourlyCost);
   
-  const monthlySavings = Math.max(monthlyHumanCost - queryStaffCost, 0);
-  const annualSavings = monthlySavings * 12;
-
+ const monthlySavings = Math.max(timeValue - queryStaffCost, 0);
+  
   return (
     <div
       className="economy-calculator-card"
@@ -62,7 +60,7 @@ const timeValue = Math.round(monthlyHours * hourlyCost);
               marginBottom: "10px",
               fontWeight: 800,
             }}
-          >
+          >m
             Heures de travail par semaine
           </label>
 
