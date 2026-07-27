@@ -215,7 +215,7 @@ h1 { font-size: clamp(44px, 6vw, 82px); line-height: 0.98; letter-spacing: -0.05
 
 @media (max-width: 560px) {
   h2 {
-  font-size: 36px !important;
+  font-size: 30px !important;
   line-height: 1.15 !important;
 }
   .kpis { grid-template-columns: 1fr; }
