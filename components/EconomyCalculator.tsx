@@ -60,7 +60,7 @@ const timeValue = Math.round(monthlyHours * hourlyCost);
               marginBottom: "10px",
               fontWeight: 800,
             }}
-          >m
+          >
             Heures de travail par semaine
           </label>
 
